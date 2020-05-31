@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adam và Eva</title>
+</head>
+<body>
+<script>
+    //Khởi tạo lớp táo:
+    let Apple = function (weight) {
+        this.weight = weight;
+    this.isEmpty = function () {
+        if (this.weight > 0){
+            this.weight = true;
+        }else {
+            this.weight = false;
+        }
+
+    }
+    this.getWeight = function () {
+        return this.weight;
+    }
+    }
+    // Khởi tạo lớp con người:
+    let Human = function (name,gender,weightHuman,weightApple) {
+        this.name = name;
+        this.gender = gender;
+        this.weightHuman = weightHuman;
+        this.weightApple = weightApple;
+        this.checkApple = function () {
+            return this.weightApple.isEmpty();
+        }
+        this.eat = function () {
+            if (this.weightApple){
+                this.weightHuman += this.weightApple;
+                document.write(this.name + " ate an apple." + "<br>")
+            }else {
+                document.write(this.name + "no apple")
+            }
+        }
+        this.say = function () {
+            if (this.weightHuman > 0){
+                console.log(this.name + " delicious apple")
+            }
+        }
+        this.getName = function () {
+            return this.name;
+        }
+        this.getWeightHuman = function () {
+            return this.weightHuman;
+        }
+    }
+    // Tạo đối tượng táo:
+    let apple = new Apple(10);
+
+    // Tạo đối tượng người Adam:
+    let adam = new Human("Kien","nam",53,apple);
+    adam.say();
+    adam.eat();
+
+</script>
+</body>
+</html>
