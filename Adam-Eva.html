@@ -6,57 +6,60 @@
 </head>
 <body>
 <script>
-    //Khởi tạo lớp táo:
-    let Apple = function (weight) {
+    function Apple(weight) {
         this.weight = weight;
-    this.isEmpty = function () {
-        if (this.weight > 0){
-            this.weight = true;
-        }else {
-            this.weight = false;
+        this.getWeightApple = function () {
+            return this.weight;
+        };
+        this.isEmpty = function () {
+            if (this.weight === 0){
+                return true;
+            }
+        };
+        this.decreaseApple = function () {
+            if (this.weight > 0) {
+                this.weight--;
+            }
         }
-
     }
-    this.getWeight = function () {
-        return this.weight;
-    }
-    }
-    // Khởi tạo lớp con người:
-    let Human = function (name,gender,weightHuman,weightApple) {
+    function Human(name,gender,weight) {
         this.name = name;
         this.gender = gender;
-        this.weightHuman = weightHuman;
-        this.weightApple = weightApple;
-        this.checkApple = function () {
-            return this.weightApple.isEmpty();
-        }
-        this.eat = function () {
-            if (this.weightApple){
-                this.weightHuman += this.weightApple;
-                document.write(this.name + " ate an apple." + "<br>")
-            }else {
-                document.write(this.name + "no apple")
+        this.weight = weight;
+        this.said = "";
+        this.setHumanSaid = function (said) {
+            this.said = said;
+        };
+        this.getHumanSaid = function () {
+            return this.said;
+        };
+        this.checkApple = function (apple) {
+            if (apple.isEmpty()) {
+                alert("Hết rồi");
             }
-        }
-        this.say = function () {
-            if (this.weightHuman > 0){
-                console.log(this.name + " delicious apple")
-            }
-        }
-        this.getName = function () {
-            return this.name;
-        }
+        };
+        this.eatApple = function (apple) {
+            apple.decreaseApple();
+            this.weight++;
+        };
         this.getWeightHuman = function () {
-            return this.weightHuman;
+            return this.weight;
+        };
+        this.setWeightHuman = function (weight) {
+            this.weight = weight;
         }
-    }
-    // Tạo đối tượng táo:
-    let apple = new Apple(10);
 
-    // Tạo đối tượng người Adam:
-    let adam = new Human("Kien","nam",53,apple);
-    adam.say();
-    adam.eat();
+    }
+    let apple = new Apple(10);
+    let Adam = new Human("Adam","Gender",60);
+    while (apple.getWeightApple() > 0) {
+        Adam.eatApple(apple);
+        Adam.checkApple(apple);
+        Adam.setHumanSaid(Adam.name + " còn " + apple.getWeightApple() + "miếng táo nữa. " + Adam.name +" giờ " + Adam.weight + ".");
+        alert(Adam.said);
+    }
+
+
 
 </script>
 </body>
